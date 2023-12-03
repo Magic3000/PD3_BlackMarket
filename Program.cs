@@ -129,7 +129,7 @@ namespace PD3_BlackMarket
                 {
                     go = false;
                 }
-                else if (command == ConsoleKey.D1)
+                else if (command == ConsoleKey.D1 || command == ConsoleKey.NumPad1)
                 {
                     $"Enter amount of C-Stacks (10 c-stacks for 90k): "._sout(Green);
                     if (int.TryParse(Console.ReadLine(), out int buyCount))
@@ -146,7 +146,7 @@ namespace PD3_BlackMarket
                         }
                     }
                 }
-                else if (command == ConsoleKey.D2)
+                else if (command == ConsoleKey.D2 || command == ConsoleKey.NumPad2)
                 {
                     $"Enter itemID: "._sout(Green);
                     var itemId = Console.ReadLine();
@@ -171,7 +171,7 @@ namespace PD3_BlackMarket
                         }
                     }
                 }
-                else if (command == ConsoleKey.D3)
+                else if (command == ConsoleKey.D3 || command == ConsoleKey.NumPad3)
                 {
                     var Heistfav = JsonConvert.DeserializeObject<Dictionary<string, object>[]>(pd3_offsets["Heistfav"].ToString());
                     var heist_list = new Dictionary<int, (Favor, string)>();
@@ -212,7 +212,7 @@ namespace PD3_BlackMarket
                         }
                     }
                 }
-                else if (command == ConsoleKey.D4)
+                else if (command == ConsoleKey.D4 || command == ConsoleKey.NumPad4)
                 {
                     var raritiesDict = new Dictionary<string, (string, int)>();        //name, id-price
                     raritiesDict["Venomous Verdigris (Pre-Order mask)"] = ("e8a13085ff9543cd9976c6e275197cbd", 0);
@@ -254,7 +254,7 @@ namespace PD3_BlackMarket
                     var resp = favorReq.GetResponse();
                     $"Buying status: {resp}\n"._sout(Yellow);
                 }
-                else if (command == ConsoleKey.D5)
+                else if (command == ConsoleKey.D5 || command == ConsoleKey.NumPad5)
                 {
                     MyWebRequest inventoryReq = new MyWebRequest(entitlementUrl, RequestMethod.GET, buyHeader, "application/json", "");
                     var resp = inventoryReq.GetResponse();
