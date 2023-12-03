@@ -1,0 +1,117 @@
+{
+    "items": [
+        {
+            "name": "Obsidian Glitz (Pre-order)",
+            "itemId": "175B6B75241E42E4B023C4D4B1950E99",
+            "enabled": true
+        },
+        {
+            "name": "Echelon (Infamous Reward)",
+            "itemId": "533872E42AB84D00BA32355EA2DE792F",
+            "enabled": true
+        },
+        {
+            "name": "Dark Preacher (Unreleased Premium)",
+            "itemId": "0000000000000000000000000000000",
+            "enabled": false
+        },
+        {
+            "name": "Wayward Drifter (Unreleased Premium)",
+            "itemId": "0000000000000000000000000000000",
+            "enabled": false
+        },
+        {
+            "name": "Gentell Cut (Unreleased Premium)",
+            "itemId": "BF092D361C495800564A54E6AC2044BB",
+            "enabled": true
+        },
+        {
+            "name": "The Striker (Unreleased Premium)",
+            "itemId": "392A3F46B23493258E82E506280088BD",
+            "enabled": true
+        },
+        {
+            "name": "Militaristic Suit (Unreleased Premium)",
+            "itemId": "D5522A2824078FEF90C4998125248934",
+            "enabled": true
+        },
+        {
+            "name": "Island Slacker (Unreleased Premium)",
+            "itemId": "7A234567890123456789012345678901",
+            "enabled": true
+        },
+        {
+            "name": "Venomous Verdigrid (Pre-order)",
+            "itemId": "E8A13085FF9543CD9976C6E275197CBD",
+            "enabled": true
+        },
+        {
+            "name": "Dark Sterling (Silver Edition)",
+            "itemId": "668DA63985CA46D381195BDB827BA1AA",
+            "enabled": true
+        },
+        {
+            "name": "Laugh Riot Mask (Unreleased Premium)",
+            "itemId": "3b53e8385afd42e8a7c3cce640da51bb",
+            "enabled": true
+        },
+        {
+            "name": "Skull of Liberty (Gold Edition)",
+            "itemId": "8c874bff3f474a1faaffb5ef8db9a69d",
+            "enabled": true
+        },
+        {
+            "name": "Solidus (Collectors Edition)",
+            "itemId": "94D9475EF8E34819938F78161B041DB6",
+            "enabled": true
+        },
+        {
+            "name": "OG American Dream (Infamous Reward)",
+            "itemId": "865B127704CD40FE9284CC1F4023886F",
+            "enabled": true
+        },
+        {
+            "name": "Coulrophobia (Nebula Reward)",
+            "itemId": "737A2739479C49F184B5A1C6C1C6F4C1",
+            "enabled": true
+        },
+        {
+            "name": "Black Claret (Nebula Reward)",
+            "itemId": "E6B9BCC883124F5A86611CC7617DA8F8",
+            "enabled": true
+        },
+        {
+            "name": "Old Faithful (Infamous Reward)",
+            "itemId": "22353e0584ef4a2596e4630759a29bf7 ",
+            "enabled": true
+        },
+        {
+            "name": "fluer-de-lys (Infamous Reward)",
+            "itemId": "8959E686397C4BB1AF7C4CB3D8C36EAA",
+            "enabled": true
+        },
+        {
+            "name": "Cotton Stripes (Pre-order)",
+            "itemId": "5B65AAB6F6354C66AEA0DA248E9452D6",
+            "enabled": true
+        },
+        {
+            "name": "Golden Slate (Gold Edition)",
+            "itemId": "F30A96C01C54492FB648F130106160DA",
+            "enabled": true
+        },
+        {
+            "name": "placeholder",
+            "itemId": "placeholder",
+            "enabled": false
+        },
+        {
+            "name": "placeholder",
+            "itemId": "placeholder",
+            "enabled": false
+        }
+    ]
+}
+
+
+
