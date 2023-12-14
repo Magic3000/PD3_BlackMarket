@@ -21,6 +21,7 @@ namespace PD3_BlackMarket
         private static string save_data_url => $"https://nebula.starbreeze.com/cloudsave/v1/namespaces/pd3/users/{userId}/records/progressionsavegame";
         private static string entitlementUrl => $"https://nebula.starbreeze.com/platform/public/namespaces/pd3/users/{userId}/entitlements?limit=2147483647";
         private static string oops => $"https://nebula.starbreeze.com/platform/public/namespaces/pd3/users/{userId}/entitlements/";
+        private static string getItems => $"https://nebula.starbreeze.com/platform/public/namespaces/pd3/items/byCriteria?limit=2147483647&includeSubCategoryItem=false";
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFabcdef0123456789";
@@ -96,16 +97,16 @@ namespace PD3_BlackMarket
             $"\nToken: {token}"._sout(Red);
             $"\nRefreshToken: {response.refresh_token}"._sout(Yellow);
 
-            var buyHeader = new Dictionary<string, string>();
-            buyHeader["Accept-Encoding"] = "deflate, gzip";
-            buyHeader["Content-Type"] = "application/json";
-            buyHeader["Accept"] = "application/json";
-            buyHeader["Authorization"] = $"Bearer {token}";
-            buyHeader["Namespace"] = "pd3";
-            buyHeader["Game-Client-Version"] = "1.0.0.1";
-            buyHeader["AccelByte-SDK-Version"] = "21.0.3";
-            buyHeader["AccelByte-OSS-Version"] = "0.8.11";
-            buyHeader["User-Agent"] = "PAYDAY3/++UE4+Release-4.27-CL-0 Windows/10.0.19045.1.256.64bit";
+            var authHeader = new Dictionary<string, string>();
+            authHeader["Accept-Encoding"] = "deflate, gzip";
+            authHeader["Content-Type"] = "application/json";
+            authHeader["Accept"] = "application/json";
+            authHeader["Authorization"] = $"Bearer {token}";
+            authHeader["Namespace"] = "pd3";
+            authHeader["Game-Client-Version"] = "1.0.0.1";
+            authHeader["AccelByte-SDK-Version"] = "21.0.3";
+            authHeader["AccelByte-OSS-Version"] = "0.8.11";
+            authHeader["User-Agent"] = "PAYDAY3/++UE4+Release-4.27-CL-0 Windows/10.0.19045.1.256.64bit";
 
             var buyData = new Dictionary<string, string>();
             buyData["itemId"] = null;
@@ -122,7 +123,7 @@ namespace PD3_BlackMarket
             bool go = true;
             while (go)
             {
-                $"\nEsc - exit\n1 - Buy C-Stacks\n2 - Custom buy\n3 - Favors\n4 - Pre-Order/Silver/Gold/Collectors edition content\n5 - Remove some stuff"._sout(Yellow);
+                $"\nEsc - exit\n1 - Buy C-Stacks\n2 - Custom buy\n3 - Favors\n4 - Pre-Order/Silver/Gold/Collectors edition content\n5 - Remove some stuff\n6 - Get all items"._sout(Yellow);
                 var command = Console.ReadKey().Key;
                 $"\n"._sout();
                 if (command == ConsoleKey.Escape)
@@ -140,7 +141,7 @@ namespace PD3_BlackMarket
                         buyData["currencyCode"] = "CASH";
                         for (int i = 0; i < buyCount; i++)
                         {
-                            MyWebRequest cStackReq = new MyWebRequest(buy_url, RequestMethod.POST, buyHeader, "application/json", JsonConvert.SerializeObject(buyData));
+                            MyWebRequest cStackReq = new MyWebRequest(buy_url, RequestMethod.POST, authHeader, "application/json", JsonConvert.SerializeObject(buyData));
                             var resp = cStackReq.GetResponse();
                             $"{i + 1}) Buying status: {resp}\n"._sout(Yellow);
                         }
@@ -165,7 +166,7 @@ namespace PD3_BlackMarket
                         buyData["currencyCode"] = currencyCode;
                         for (int i = 0; i < buyCount; i++)
                         {
-                            MyWebRequest cStackReq = new MyWebRequest(buy_url, RequestMethod.POST, buyHeader, "application/json", JsonConvert.SerializeObject(buyData));
+                            MyWebRequest cStackReq = new MyWebRequest(buy_url, RequestMethod.POST, authHeader, "application/json", JsonConvert.SerializeObject(buyData));
                             var resp = cStackReq.GetResponse();
                             $"{i + 1}) Buying status: {resp}\n"._sout(Yellow);
                         }
@@ -206,7 +207,7 @@ namespace PD3_BlackMarket
                         buyData["currencyCode"] = "CASH";
                         for (int i = 0; i < buyCount; i++)
                         {
-                            MyWebRequest favorReq = new MyWebRequest(buy_url, RequestMethod.POST, buyHeader, "application/json", JsonConvert.SerializeObject(buyData));
+                            MyWebRequest favorReq = new MyWebRequest(buy_url, RequestMethod.POST, authHeader, "application/json", JsonConvert.SerializeObject(buyData));
                             var resp = favorReq.GetResponse();
                             $"{i + 1}) Buying status: {resp}\n"._sout(Yellow);
                         }
@@ -250,13 +251,13 @@ namespace PD3_BlackMarket
                     buyData["price"] = toBuy.Value.Item2.ToString();
                     buyData["discountedPrice"] = toBuy.Value.Item2.ToString();
                     buyData["currencyCode"] = "CASH";
-                    MyWebRequest favorReq = new MyWebRequest(buy_url, RequestMethod.POST, buyHeader, "application/json", JsonConvert.SerializeObject(buyData));
+                    MyWebRequest favorReq = new MyWebRequest(buy_url, RequestMethod.POST, authHeader, "application/json", JsonConvert.SerializeObject(buyData));
                     var resp = favorReq.GetResponse();
                     $"Buying status: {resp}\n"._sout(Yellow);
                 }
                 else if (command == ConsoleKey.D5 || command == ConsoleKey.NumPad5)
                 {
-                    MyWebRequest inventoryReq = new MyWebRequest(entitlementUrl, RequestMethod.GET, buyHeader, "application/json", "");
+                    MyWebRequest inventoryReq = new MyWebRequest(entitlementUrl, RequestMethod.GET, authHeader, "application/json", "");
                     var resp = inventoryReq.GetResponse();
                     $"Fetching inventory: {resp}\n"._sout(Yellow);
                     var respDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(resp);
@@ -281,7 +282,7 @@ namespace PD3_BlackMarket
                             var removeJson = new Dictionary<string, string>();
                             removeJson["useCount"] = "1";
                             removeJson["options"] = null;
-                            MyWebRequest removeReq = new MyWebRequest($"{oops}{idToRemove}/decrement", RequestMethod.PUT, buyHeader, "application/json", JsonConvert.SerializeObject(removeJson));
+                            MyWebRequest removeReq = new MyWebRequest($"{oops}{idToRemove}/decrement", RequestMethod.PUT, authHeader, "application/json", JsonConvert.SerializeObject(removeJson));
                             var removeResp = removeReq.GetResponse();
                             $"Item removed: {removeResp}"._sout(Cyan);
                         }
@@ -290,6 +291,12 @@ namespace PD3_BlackMarket
                             "Removing cancelled"._sout(Green);
                         }
                     }
+                }
+                else if (command == ConsoleKey.D6 || command == ConsoleKey.NumPad6)
+                {
+                    MyWebRequest itemsReq = new MyWebRequest(getItems, RequestMethod.GET, authHeader, "application/json", "");
+                    var resp = itemsReq.GetResponse();
+                    $"Items: {resp}\n"._sout(Yellow);
                 }
             }
 
