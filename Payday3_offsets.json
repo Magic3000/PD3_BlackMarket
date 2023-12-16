@@ -311,19 +311,19 @@
     {
       "Syntax error": [
         {
-          "Fast Evacuation": {
+          "Faster Escape Helicopter": {
             "price": 1000,
             "itemId": "5c1b77fc240c4687b5ec4fa3ba215343"
           },
-          "Fewer Drones": {
+          "Scrambled Drones": {
             "price": 1000,
             "itemId": "78502eb46ce44bd08b156c6a5466fbd3"
           },
-          "QR-code": {
+          "QR Code Access": {
             "price": 1000,
             "itemId": "b1535c1e89e54b7ab749d622ebe2e86f"
           },
-          "Syntax error 3 (?? doesn't exist)": {
+          "Security Laser Glitch": {
             "price": 1000,
             "itemId": "4876f3b42f904fc2af6cb2c75de27942"
           }
